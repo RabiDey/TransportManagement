@@ -1,0 +1,136 @@
+﻿@model TMSite.Models.Vehicle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Vehicle Details</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RegNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Make)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Make)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FuelType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FuelType)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MOTExpiryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MOTExpiryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InsuranceExpiryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InsuranceExpiryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastServicedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastServicedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceDueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceDueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentMileage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentMileage)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FuelCardNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FuelCardNumber)
+        </dd>
+
+    </dl>
+    <table class="table">
+        <tr>
+            <th>
+                Driver Name
+            </th>
+            <th>
+                Route Name
+            </th>
+        </tr>
+        @foreach(var item in Model.Routes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.Driver.FirstName)
+                   
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.RouteName)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VehicleID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to Vehicles", "Index", null, new { @class = "btn btn-danger" })
+
+   
+</p>

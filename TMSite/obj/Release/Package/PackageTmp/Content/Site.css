@@ -1,0 +1,96 @@
+body {
+    padding-top: 250px;
+    padding-bottom: 20px;
+    background-image:url(road1.jpg);
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+/*Table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+  
+    padding: 8px;
+    text-align: left;
+    background-color: #660000;
+    color:white;
+    border-bottom: 3px solid #660000;
+   
+
+}
+
+ td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #660000;
+}
+
+tr:hover{background-color:#f5f5f5}
+
+/*button colour change*/
+.button2 {
+    background-color: #660000; 
+    color: white; 
+    /*border: 2px solid #660000;*/
+    border-radius:2px;
+    text-align:center;
+}
+
+.button2:hover {
+    background-color: white;
+    color: black;
+}
+
+.overlay {
+  display: block;
+  top: 0;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+ Image Zoom
+.panel { position: relative; overflow: hidden; display: block; border-radius: 0 !important;  }
+.panel-default { border-color: #ebedef !important; }
+.panel .panel-body { position: relative; padding: 0 !important; overflow: hidden; height: auto; }
+.panel .panel-body a { overflow: hidden; }
+.panel .panel-body a img { display: block; margin: 0; width: 100%; height: auto; 
+    transition: all 0.5s; 
+    -moz-transition: all 0.5s; 
+    -webkit-transition: all 0.5s; 
+    -o-transition: all 0.5s; 
+}
+.panel .panel-body a.zoom:hover img { transform: scale(1.2); -ms-transform: scale(1.2); -webkit-transform: scale(1.2); -o-transform: scale(1.2); -moz-transform: scale(1.2); }
+.panel .panel-body a.zoom span.overlay { position: absolute; top: 0; left: 0; visibility: visible; height: 100%; width: 100%; background-color: #000; opacity: 0.55; -moz-opacity: 0.55; -webkit-opacity: 0.55; filter: alpha(opacity=65); -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
+    transition: opacity .25s ease-out;
+    -moz-transition: opacity .25s ease-out;
+    -webkit-transition: opacity .25s ease-out;
+    -o-transition: opacity .25s ease-out;
+}     
+.panel .panel-body a.zoom:hover span.overlay { display: block; visibility: hidden; opacity: 0;  }  
+.panel .panel-body a.zoom:hover span.overlay i { position: absolute; top: 45%; left: 0%; width: 100%; font-size: 2.25em; color: #fff !important; text-align: center;
+    opacity: 1;
+    -moz-opacity: 1;
+    -webkit-opacity: 1;
+    filter: alpha(opacity=1);    
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+}

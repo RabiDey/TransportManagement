@@ -1,0 +1,61 @@
+﻿@model TMSite.Models.Route
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Route Details</h2>
+
+<div>
+    <hr />
+    
+    <div class="form-horizontal">
+        <div class="row">
+            
+        <div class="col-md-4">
+
+            <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RouteName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RouteName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Driver.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Driver.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Vehicle.RegNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Vehicle.RegNumber)
+            </dd>
+                
+            </dl>
+        </div>
+
+            <div class="col-md-8">
+                <div class="item">
+                    <h3>Traffic Update</h3>
+                   <img src="~/Content/themes/traffic2.jpg" />
+                    
+                </div>
+            </div>
+    </div>
+    </div>
+   </div>
+    <br/><br/>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RouteID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to Routes", "Index", null, new { @class = "btn btn-danger" })
+
+</p>
+

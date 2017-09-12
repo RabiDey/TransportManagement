@@ -1,0 +1,118 @@
+﻿@model IEnumerable<TMSite.Models.Vehicle>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>VEHICLES</h2>
+
+<div class="container">
+
+    @using (Html.BeginForm())
+    {
+
+        <p>
+            <div class="create col-md-10 form-inline">
+
+                <label>Reg Number:</label>
+                @Html.DropDownList("vName", (IEnumerable<SelectListItem>)ViewBag.Id, "All", new { @class = "form-control" })
+                <input type="submit" value="Search" class="btn btn-info" />
+                @Html.ActionLink("Add New Vehicle", "Create", null, new { @class = "btn btn-success" })
+                </div>
+</p>
+
+    }
+</div>&nbsp;&nbsp;
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RegNumber)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.RegDate)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Make)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th*@>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.FuelType)
+        </th>
+        
+        <th>
+            @Html.ActionLink("MOT Expiry Date", "Index", new { sortOrder = ViewBag.MOTExpDate })
+            @*@Html.DisplayNameFor(model => model.MOTExpiryDate)*@
+        </th>
+        <th>
+            @Html.ActionLink("Insurance Expiry Date", "Index", new { sortOrder = ViewBag.InsExpDate })
+            @*@Html.DisplayNameFor(model => model.InsuranceExpiryDate)*@
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.LastServicedDate)
+        </th>*@
+        <th>
+            @Html.ActionLink("Service Due Date", "Index", new { sortOrder = ViewBag.ServiceDate })
+            @*@Html.DisplayNameFor(model => model.ServiceDueDate)*@
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CurrentMileage)
+        </th>*@
+        
+        @*<th>
+            @Html.DisplayNameFor(model => model.FuelCardNumber)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegNumber)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.RegDate)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Make)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>*@
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.FuelType)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.MOTExpiryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsuranceExpiryDate)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.LastServicedDate)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceDueDate)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CurrentMileage)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.FuelCardNumber)
+        </td>*@
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.VehicleID }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.VehicleID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VehicleID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+    
+}
+
+</table>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TMDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Driver">
+    <Key>
+      <PropertyRef Name="DriverID" />
+    </Key>
+    <Property Name="DriverID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LicenceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LicenceExpiryDate" Type="DateTime" Precision="3" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HomePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NextToKin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Routes" Relationship="Self.Fk_Route_Driver" FromRole="Driver" ToRole="Route" />
+  </EntityType>
+  <EntityType Name="Route">
+    <Key>
+      <PropertyRef Name="RouteID" />
+    </Key>
+    <Property Name="RouteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RouteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DriverID" Type="Int32" Nullable="false" />
+    <Property Name="VehicleID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Driver" Relationship="Self.Fk_Route_Driver" FromRole="Route" ToRole="Driver" />
+    <NavigationProperty Name="Vehicle" Relationship="TMDBModel.Fk_Route_Vehicle" FromRole="Route" ToRole="Vehicle" />
+  </EntityType>
+  <Association Name="Fk_Route_Driver">
+    <End Role="Driver" Type="Self.Driver" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Route" Type="Self.Route" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Driver">
+        <PropertyRef Name="DriverID" />
+      </Principal>
+      <Dependent Role="Route">
+        <PropertyRef Name="DriverID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TMDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Drivers" EntityType="Self.Driver" />
+    <EntitySet Name="Routes" EntityType="Self.Route" />
+    <AssociationSet Name="Fk_Route_Driver" Association="Self.Fk_Route_Driver">
+      <End Role="Driver" EntitySet="Drivers" />
+      <End Role="Route" EntitySet="Routes" />
+    </AssociationSet>
+    <EntitySet Name="Vehicles" EntityType="TMDBModel.Vehicle" />
+    <AssociationSet Name="Fk_Route_Vehicle" Association="TMDBModel.Fk_Route_Vehicle">
+      <End Role="Vehicle" EntitySet="Vehicles" />
+      <End Role="Route" EntitySet="Routes" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="VehicleID" />
+    </Key>
+    <Property Name="VehicleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="RegDate" Type="DateTime" Precision="3" />
+    <Property Name="Make" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FuelType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="MOTExpiryDate" Type="DateTime" Precision="3" />
+    <Property Name="InsuranceExpiryDate" Type="DateTime" Precision="3" />
+    <Property Name="LastServicedDate" Type="DateTime" Precision="3" />
+    <Property Name="ServiceDueDate" Type="DateTime" Precision="3" />
+    <Property Name="CurrentMileage" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FuelCardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Routes" Relationship="TMDBModel.Fk_Route_Vehicle" FromRole="Vehicle" ToRole="Route" />
+  </EntityType>
+  <Association Name="Fk_Route_Vehicle">
+    <End Type="TMDBModel.Vehicle" Role="Vehicle" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="TMDBModel.Route" Role="Route" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="VehicleID" />
+      </Principal>
+      <Dependent Role="Route">
+        <PropertyRef Name="VehicleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TMDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Driver">
+    <Key>
+      <PropertyRef Name="DriverID" />
+    </Key>
+    <Property Name="DriverID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="LicenceNumber" Type="varchar" MaxLength="50" />
+    <Property Name="LicenceExpiryDate" Type="datetime" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="HomePhone" Type="varchar" MaxLength="50" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="NextToKin" Type="varchar" MaxLength="50" />
+    <Property Name="Photo" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Route">
+    <Key>
+      <PropertyRef Name="RouteID" />
+    </Key>
+    <Property Name="RouteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RouteName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DriverID" Type="int" Nullable="false" />
+    <Property Name="VehicleID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="VehicleID" />
+    </Key>
+    <Property Name="VehicleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RegNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="RegDate" Type="datetime" />
+    <Property Name="Make" Type="nvarchar" MaxLength="50" />
+    <Property Name="Model" Type="nvarchar" MaxLength="50" />
+    <Property Name="FuelType" Type="nvarchar" MaxLength="10" />
+    <Property Name="MOTExpiryDate" Type="datetime" />
+    <Property Name="InsuranceExpiryDate" Type="datetime" />
+    <Property Name="LastServicedDate" Type="datetime" />
+    <Property Name="ServiceDueDate" Type="datetime" />
+    <Property Name="CurrentMileage" Type="nvarchar" MaxLength="10" />
+    <Property Name="FuelCardNumber" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="Fk_Route_Vehicle">
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Route" Type="Self.Route" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="VehicleID" />
+      </Principal>
+      <Dependent Role="Route">
+        <PropertyRef Name="VehicleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TMDBModelStoreContainer">
+    <EntitySet Name="Driver" EntityType="Self.Driver" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="Fk_Route_Vehicle" Association="Self.Fk_Route_Vehicle">
+      <End Role="Vehicle" EntitySet="Vehicle" />
+      <End Role="Route" EntitySet="Route" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

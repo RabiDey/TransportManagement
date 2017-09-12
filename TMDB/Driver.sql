@@ -1,0 +1,18 @@
+﻿CREATE TABLE [dbo].[Driver]
+(
+	[DriverID] INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
+	[FirstName] NVARCHAR(50) NOT NULL,
+	[LastName] NVARCHAR(50) NOT NULL,
+	[LicenceNumber] NVARCHAR(50) NOT NULL,
+	[LicenceExpiryDate] DATETIME NOT NULL,
+	[StartDate] DATETIME NOT NULL,
+	[EndDate] DATETIME NULL,
+	[Address] NVARCHAR(100) NOT NULL,
+	[HomePhone] NVARCHAR(50) NOT NULL,
+	[Mobile] NVARCHAR(50) NULL,
+	[Email] NVARCHAR(50) NULL,
+	[NextToKin] NVARCHAR(50) NOT NULL,
+	[Photo] NVARCHAR(MAX) NOT NULL
+	
+)
+

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TMSite.Models.Driver>
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@*<div class="jumbotron">
+    <h1>@Html.ActionLink("Transport Management Database", "Index", "Home")</h1>
+
+    <h1>Transport Management Database</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>*@
+@*<div>
+    @Html.ActionLink("List of Vehicles","Index","Vehicles") <br/>
+    @Html.ActionLink("List of Routes","Index","Routes")
+</div>*@
+
+<div class="row">
+    <div class="col-md-4">
+        
+        <div class="panel panel-default">
+          
+            <div class="panel-body">
+               
+                <a href='@Url.Action("Index", "Routes")' class="zoom">
+                  
+                    <img src='@Url.Content("~/Content/routes.jpg")' style="border:inset" />
+                    <span class="overlay"><h1 align="center" style="color:white;">ROUTES</h1></span>
+                </a>
+               
+                </div>
+            </div>
+
+            </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <a href='@Url.Action("Index", "Vehicles")' class="zoom" >
+                            <img src='@Url.Content("~/Content/Van.jpg")'  style="border:inset"  />
+                            <span class="overlay"><h1 align="center" style="color:white;">VEHICLES</h1></span>
+                       </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <a href='@Url.Action("Index", "Drivers")' class="zoom" >
+                            <img src='@Url.Content("~/Content/driver.jpg")'  style="border:inset" />
+                            <span class="overlay"><h1 align="center" style="color:white;">DRIVERS</h1></span>
+                            
+                        </a>
+                    </div>
+                </div>
+            </div>
+   
+        </div>
+

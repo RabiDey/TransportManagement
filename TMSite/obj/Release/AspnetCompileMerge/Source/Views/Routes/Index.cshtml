@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TMSite.Models.Route>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>ROUTES</h2>
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+
+
+        <p>
+            <div class="create col-md-10 form-inline">
+
+                <label>Route Name:</label>
+                @Html.DropDownList("rName", (IEnumerable<SelectListItem>)ViewBag.Id, "All", new { @class = "form-control" })
+                <input type="submit" value="Search" class="btn btn-info" />
+                @Html.ActionLink("Add New Route", "Create", null, new { @class = "btn btn-success" })
+            </div>
+        </p>
+    }
+</div>&nbsp;&nbsp;
+
+    
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RouteName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Driver.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vehicle.RegNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.RouteName) 
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Driver.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vehicle.RegNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.RouteID }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.RouteID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.RouteID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
+   
